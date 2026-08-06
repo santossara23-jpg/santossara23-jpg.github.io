@@ -1,251 +1,575 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<html lang="pt-BR"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>BLOG SARA</title>
 
     <style>
+
+        /* =========================
+           RESET
+        ========================= */
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            background: #080606;
-            color: #000;
-            font-family: Arial, sans-serif;
-            min-height: 100vh;
-            padding: 35px 25px 60px;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* TÍTULO */
+        body {
+            background:
+                radial-gradient(circle at top, #211818 0%, #080606 45%, #030303 100%);
+
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+
+            min-height: 100vh;
+
+            padding: 35px 25px 80px;
+        }
+
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 1150px;
+            margin: auto;
+        }
+
+
+        /* =========================
+           CABEÇALHO
+        ========================= */
 
         .titulo {
-            background: white;
             width: 100%;
-            max-width: 1000px;
-            margin: 0 auto 50px;
+            max-width: 1100px;
 
-            padding: 45px 30px;
-            border-radius: 70px;
+            margin: 0 auto 70px;
+
+            padding: 50px 55px;
+
+            border-radius: 45px;
+
+            background: linear-gradient(
+                135deg,
+                #ffffff,
+                #f4f4f4
+            );
+
+            color: #111;
 
             text-align: center;
 
-            font-family: "Brush Script MT", "Segoe Script", cursive;
-            font-size: clamp(50px, 8vw, 105px);
-            font-weight: bold;
+            font-size: clamp(22px, 3vw, 34px);
+            line-height: 1.45;
+
+            font-weight: 600;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.45);
+
+            position: relative;
+            overflow: hidden;
         }
 
-        /* CONTEÚDO */
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
+        .titulo::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            background: rgba(0, 0, 0, 0.04);
+
+            border-radius: 50%;
+
+            top: -90px;
+            left: -60px;
         }
+
+
+        /* =========================
+           TÍTULOS DAS SEÇÕES
+        ========================= */
 
         .titulo-secao {
             display: inline-block;
 
             background: white;
-            padding: 12px 30px;
+            color: #111;
 
-            border-radius: 25px;
+            padding: 13px 30px;
 
-            font-size: clamp(28px, 4vw, 48px);
-            margin-bottom: 30px;
+            border-radius: 18px;
+
+            font-size: clamp(25px, 4vw, 42px);
+
+            margin-bottom: 35px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.35);
         }
 
-        /* INDICAÇÕES */
+
+        /* =========================
+           INDICAÇÕES
+        ========================= */
 
         .indicacoes {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 35px;
 
-            margin-bottom: 100px;
+            grid-template-columns:
+                repeat(3, minmax(0, 1fr));
+
+            gap: 28px;
+
+            margin-bottom: 110px;
         }
+
+
+        /* =========================
+           CARD
+        ========================= */
 
         .card {
             background: #fff;
-            border-radius: 30px;
 
-            padding: 20px;
+            color: #111;
 
-            min-height: 400px;
+            border-radius: 28px;
+
+            padding: 14px;
+
+            overflow: hidden;
 
             display: flex;
             flex-direction: column;
 
-            transition: transform 0.3s ease;
+            min-width: 0;
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.35);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
         }
+
 
         .card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-10px);
+
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.55);
         }
 
+
+        /* =========================
+           FOTO
+        ========================= */
+
         .foto {
-            height: 280px;
+            width: 100%;
+
+            height: 330px;
 
             border-radius: 20px;
 
-            background: #eee;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-
-            font-size: 32px;
-            font-weight: bold;
+            background: #ddd;
 
             overflow: hidden;
+
+            position: relative;
         }
+
+
+        .foto::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.25),
+                transparent 45%
+            );
+
+            pointer-events: none;
+        }
+
 
         .foto img {
             width: 100%;
             height: 100%;
 
+            display: block;
+
             object-fit: cover;
+
+            transition:
+                transform 0.5s ease;
         }
+
+
+        .card:hover .foto img {
+            transform: scale(1.06);
+        }
+
+
+        /* =========================
+           DESCRIÇÃO
+        ========================= */
 
         .descricao {
-            margin-top: 15px;
-
-            background: #f5f5f5;
-
-            border-radius: 15px;
-
-            padding: 15px;
-
-            font-size: 20px;
-            font-weight: bold;
+            padding: 18px 8px 10px;
         }
 
-        /* DESTAQUE */
+
+        .descricao h2 {
+            font-size: 22px;
+
+            margin-bottom: 10px;
+
+            line-height: 1.2;
+        }
+
+
+        .descricao p {
+            font-size: 15px;
+
+            line-height: 1.55;
+
+            color: #555;
+        }
+
+
+        /* =========================
+           DESTAQUE
+        ========================= */
 
         .destaque {
             margin-top: 20px;
         }
 
+
         .destaque-card {
             background: white;
 
-            max-width: 650px;
+            color: #111;
 
-            margin: 30px auto 0;
+            max-width: 950px;
+
+            margin: 10px auto 0;
+
+            padding: 18px;
 
             border-radius: 35px;
 
-            padding: 25px;
-
             display: grid;
-            grid-template-columns: 1fr 1fr;
 
-            gap: 25px;
+            grid-template-columns:
+                minmax(280px, 0.9fr)
+                minmax(280px, 1.1fr);
+
+            gap: 30px;
 
             align-items: center;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.45);
         }
 
-        .destaque .foto {
-            height: 350px;
+
+        .destaque-card .foto {
+            height: 450px;
         }
+
 
         .destaque-info {
-            font-size: 24px;
+            padding: 20px;
         }
+
 
         .destaque-info h2 {
-            font-size: 38px;
-            margin-bottom: 15px;
+            font-size: clamp(28px, 4vw, 45px);
+
+            line-height: 1.1;
+
+            margin-bottom: 20px;
         }
+
 
         .destaque-info p {
-            line-height: 1.5;
+            font-size: 18px;
+
+            line-height: 1.7;
+
+            color: #555;
+
+            margin-bottom: 25px;
         }
 
-        /* RESPONSIVO */
 
-        @media (max-width: 750px) {
+        /* =========================
+           BOTÃO
+        ========================= */
+
+        .btn {
+            display: inline-block;
+
+            padding: 13px 25px;
+
+            background: #111;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 12px;
+
+            font-weight: bold;
+
+            transition:
+                background 0.3s ease,
+                transform 0.3s ease;
+        }
+
+
+        .btn:hover {
+            background: #333;
+
+            transform: translateY(-3px);
+        }
+
+
+        /* =========================
+           LINHA DECORATIVA
+        ========================= */
+
+        .linha {
+            width: 100%;
+
+            height: 2px;
+
+            background: rgba(255,255,255,0.15);
+
+            margin: 80px 0 50px;
+        }
+
+
+        /* =========================
+           RESPONSIVO TABLET
+        ========================= */
+
+        @media (max-width: 900px) {
 
             body {
-                padding: 20px 15px 50px;
+                padding: 25px 18px 60px;
             }
+
 
             .titulo {
-                padding: 30px 20px;
-                margin-bottom: 35px;
+                padding: 40px 30px;
             }
+
 
             .indicacoes {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
+                grid-template-columns:
+                    repeat(2, minmax(0, 1fr));
+
+                gap: 22px;
             }
 
-            .card {
-                min-height: 320px;
-                padding: 12px;
-                border-radius: 22px;
-            }
 
             .foto {
-                height: 220px;
-                font-size: 25px;
+                height: 300px;
             }
 
-            .descricao {
-                font-size: 16px;
-                padding: 10px;
-            }
 
             .destaque-card {
                 grid-template-columns: 1fr;
             }
 
-            .destaque .foto {
-                height: 300px;
+
+            .destaque-card .foto {
+                height: 400px;
             }
+
         }
 
-        @media (max-width: 500px) {
+
+        /* =========================
+           RESPONSIVO CELULAR
+        ========================= */
+
+        @media (max-width: 550px) {
+
+            body {
+                padding: 15px 12px 50px;
+            }
+
+
+            .titulo {
+                padding: 30px 20px;
+
+                border-radius: 28px;
+
+                margin-bottom: 45px;
+
+                font-size: 19px;
+
+                line-height: 1.5;
+            }
+
+
+            .titulo-secao {
+                font-size: 25px;
+
+                padding: 11px 18px;
+
+                border-radius: 14px;
+
+                margin-bottom: 22px;
+            }
+
 
             .indicacoes {
                 grid-template-columns: 1fr 1fr;
+
+                gap: 12px;
+
+                margin-bottom: 70px;
             }
 
-            .titulo-secao {
-                font-size: 26px;
-                padding: 10px 20px;
+
+            .card {
+                padding: 8px;
+
+                border-radius: 18px;
             }
+
 
             .foto {
-                height: 190px;
+                height: 220px;
+
+                border-radius: 13px;
             }
+
 
             .descricao {
-                font-size: 14px;
+                padding: 12px 4px 6px;
             }
 
-            .destaque-card {
-                padding: 15px;
+
+            .descricao h2 {
+                font-size: 17px;
+
+                margin-bottom: 7px;
             }
+
+
+            .descricao p {
+                font-size: 13px;
+
+                line-height: 1.45;
+            }
+
+
+            .destaque-card {
+                padding: 10px;
+
+                border-radius: 25px;
+
+                gap: 5px;
+            }
+
+
+            .destaque-card .foto {
+                height: 330px;
+            }
+
+
+            .destaque-info {
+                padding: 15px 10px 20px;
+            }
+
+
+            .destaque-info h2 {
+                font-size: 28px;
+            }
+
+
+            .destaque-info p {
+                font-size: 16px;
+
+                line-height: 1.55;
+            }
+
         }
+
+
+        /* =========================
+           CELULARES MUITO PEQUENOS
+        ========================= */
+
+        @media (max-width: 380px) {
+
+            .indicacoes {
+                grid-template-columns: 1fr;
+            }
+
+
+            .foto {
+                height: 350px;
+            }
+
+        }
+
     </style>
 </head>
 
+
 <body>
 
+
+    <!-- =========================
+         INTRODUÇÃO
+    ========================= -->
+
     <header class="titulo">
-        Olá! Seja muito bem-vindo(a) ao meu blog. Aqui você vai encontrar recomendações, curiosidades e informações sobre o incrível universo dos filmes e das séries. Se você gosta de dar boas risadas, se emocionar, sentir suspense ou viver grandes aventuras, este blog é para você!
+
+        Olá! Seja muito bem-vindo(a) ao meu blog.
+
+        Aqui você vai encontrar recomendações,
+        curiosidades e informações sobre o incrível
+        universo dos filmes e das séries.
+
+        Se você gosta de dar boas risadas,
+        se emocionar, sentir suspense ou viver
+        grandes aventuras, este blog é para você!
+
     </header>
 
 
     <main class="container">
 
-        <!-- INDICAÇÕES -->
+
+        <!-- =========================
+             INDICAÇÕES
+        ========================= -->
 
         <section>
 
@@ -253,115 +577,216 @@
                 Indicações
             </h1>
 
+
             <div class="indicacoes">
 
-                <!-- CARD 1 -->
+
+                <!-- SHADOWHUNTERS -->
 
                 <article class="card">
 
                     <div class="foto">
-                        <img src="img/shadow.jpeg" alt="Nome da série">
+
+                        <img src="img/shadow.jpeg" alt="Shadowhunters">
+
                     </div>
 
-                    <div class="descricao">
-                        Shadowhunters
 
-Baseada na saga Os Instrumentos Mortais, a série conta a história de Clary Fray, que descobre fazer parte de um grupo de caçadores de sombras responsáveis por proteger o mundo de demônios e outras criaturas sobrenaturais.
+                    <div class="descricao">
+
+                        <h2>
+                            Shadowhunters
+                        </h2>
+
+                        <p>
+                            Baseada na saga Os Instrumentos Mortais,
+                            a série conta a história de Clary Fray,
+                            que descobre fazer parte de um grupo de
+                            caçadores de sombras responsáveis por
+                            proteger o mundo de demônios e outras
+                            criaturas sobrenaturais.
+                        </p>
+
                     </div>
 
                 </article>
 
 
-                <!-- CARD 2 -->
+
+                <!-- DIÁRIO DE UM VAMPIRO -->
 
                 <article class="card">
 
                     <div class="foto">
-                        <img src="img/vampiro.jpeg" alt="Nome da série">
+
+                        <img src="img/vampiro.jpeg" alt="Diário de um Vampiro">
+
                     </div>
 
-                    <div class="descricao">
-                       Diário de um Vampiro (The Vampire Diaries)
 
-Uma série de romance, drama e fantasia que acompanha a vida de Elena Gilbert, uma jovem que se envolve com os irmãos vampiros Stefan e Damon Salvatore, enfrentando mistérios, criaturas sobrenaturais e grandes desafios.
+                    <div class="descricao">
+
+                        <h2>
+                            Diário de um Vampiro
+                        </h2>
+
+                        <p>
+                            Uma série de romance, drama e fantasia
+                            que acompanha a vida de Elena Gilbert,
+                            uma jovem que se envolve com os irmãos
+                            vampiros Stefan e Damon Salvatore,
+                            enfrentando mistérios, criaturas
+                            sobrenaturais e grandes desafios.
+                        </p>
+
                     </div>
 
                 </article>
 
 
-                <!-- CARD 3 -->
+
+                <!-- STRANGER THINGS -->
 
                 <article class="card">
 
                     <div class="foto">
-                        <img src="img/strangers.jpeg" alt="Nome da série">
+
+                        <img src="img/strangers.jpeg" alt="Stranger Things">
+
                     </div>
 
-                    <div class="descricao">
-                       Stranger Things
 
-Misturando ficção científica, suspense e aventura, a série acompanha um grupo de amigos que investiga o desaparecimento de um garoto e acaba descobrindo experimentos secretos, criaturas assustadoras e um mundo paralelo
+                    <div class="descricao">
+
+                        <h2>
+                            Stranger Things
+                        </h2>
+
+                        <p>
+                            Misturando ficção científica, suspense
+                            e aventura, a série acompanha um grupo
+                            de amigos que investiga o desaparecimento
+                            de um garoto e acaba descobrindo
+                            experimentos secretos, criaturas
+                            assustadoras e um mundo paralelo.
+                        </p>
+
                     </div>
 
                 </article>
 
 
-                <!-- CARD 4 -->
+
+                <!-- THE FLASH -->
 
                 <article class="card">
 
                     <div class="foto">
-                        <img src="img/flash.jpeg" alt="Nome da série">
+
+                        <img src="img/flash.jpeg" alt="The Flash">
+
                     </div>
 
-                    <div class="descricao">
-                        The Flash 
 
-É uma série de ação e ficção científica sobre Barry Allen, um cientista que ganha o poder da supervelocidade após um acidente. Como o herói Flash, ele protege sua cidade de vilões e enfrenta grandes desafios ao lado de seus amigos.
+                    <div class="descricao">
+
+                        <h2>
+                            The Flash
+                        </h2>
+
+                        <p>
+                            É uma série de ação e ficção científica
+                            sobre Barry Allen, um cientista que ganha
+                            o poder da supervelocidade após um acidente.
+                            Como o herói Flash, ele protege sua cidade
+                            de vilões e enfrenta grandes desafios ao
+                            lado de seus amigos.
+                        </p>
+
                     </div>
 
                 </article>
 
 
-                <!-- CARD 5 -->
+
+                <!-- SUPERNATURAL -->
 
                 <article class="card">
 
                     <div class="foto">
-                        <img src="img/sobrenatural.jpeg" alt="Nome da série">
+
+                        <img src="img/sobrenatural.jpeg" alt="Supernatural">
+
                     </div>
 
-                    <div class="descricao">
-                        Supernatural (Sobrenatural)
 
-Supernatural é uma série de fantasia, ação e suspense que acompanha os irmãos Sam e Dean Winchester, dois caçadores que viajam pelos Estados Unidos enfrentando demônios, fantasmas, monstros e outras criaturas sobrenaturais enquanto tentam proteger as pessoas e salvar o mundo.
+                    <div class="descricao">
+
+                        <h2>
+                            Supernatural
+                        </h2>
+
+                        <p>
+                            Supernatural é uma série de fantasia,
+                            ação e suspense que acompanha os irmãos
+                            Sam e Dean Winchester, dois caçadores que
+                            viajam pelos Estados Unidos enfrentando
+                            demônios, fantasmas, monstros e outras
+                            criaturas sobrenaturais.
+                        </p>
+
                     </div>
 
                 </article>
 
 
-                <!-- CARD 6 -->
+
+                <!-- TEEN WOLF -->
 
                 <article class="card">
 
                     <div class="foto">
-                        <img src="img/teen.jpeg" alt="Nome da série">
+
+                        <img src="img/teen.jpeg" alt="Teen Wolf">
+
                     </div>
 
-                    <div class="descricao">
-                       Teen Wolf
 
-A série acompanha Scott McCall, um adolescente que, após ser mordido por um lobisomem, ganha habilidades sobrenaturais. Enquanto aprende a controlar seus poderes, ele enfrenta perigos e protege seus amigos e sua cidade.
+                    <div class="descricao">
+
+                        <h2>
+                            Teen Wolf
+                        </h2>
+
+                        <p>
+                            A série acompanha Scott McCall, um
+                            adolescente que, após ser mordido por
+                            um lobisomem, ganha habilidades
+                            sobrenaturais. Enquanto aprende a
+                            controlar seus poderes, ele enfrenta
+                            perigos e protege seus amigos.
+                        </p>
+
                     </div>
 
                 </article>
+
 
             </div>
 
         </section>
 
 
-        <!-- MELHOR DESTAQUE -->
+
+        <!-- LINHA -->
+
+        <div class="linha"></div>
+
+
+
+        <!-- =========================
+             DESTAQUE
+        ========================= -->
 
         <section class="destaque">
 
@@ -372,27 +797,46 @@ A série acompanha Scott McCall, um adolescente que, após ser mordido por um lo
 
             <article class="destaque-card">
 
+
                 <div class="foto">
-                    <img src="img/vampiro.jpeg" alt="Nome da série">
+
+                    <img src="img/vampiro.jpeg" alt="Diário de um Vampiro">
+
                 </div>
+
 
                 <div class="destaque-info">
 
                     <h2>
-                      Diário de um Vampiro (The Vampire Diaries)
+                        Diário de um Vampiro
                     </h2>
 
+
                     <p>
-                        Uma série de romance, drama e fantasia que acompanha a vida de Elena Gilbert, uma jovem que se envolve com os irmãos vampiros Stefan e Damon Salvatore, enfrentando mistérios, criaturas sobrenaturais e grandes desafios.
+                        Uma série de romance, drama e fantasia
+                        que acompanha a vida de Elena Gilbert,
+                        uma jovem que se envolve com os irmãos
+                        vampiros Stefan e Damon Salvatore,
+                        enfrentando mistérios, criaturas
+                        sobrenaturais e grandes desafios.
                     </p>
 
+
+                    <a href="https://www.netflix.com/watch/80053144" class="btn">
+                        Saiba mais
+                    </a>
+
                 </div>
+
 
             </article>
 
         </section>
 
+
     </main>
 
-</body>
-</html>
+
+
+
+</body></html>
